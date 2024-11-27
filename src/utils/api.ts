@@ -78,12 +78,6 @@ export const fetchProfile = function fetchProfile(
         }
 
         if (AppBskyActorProfile.isRecord(value)) {
-          const host = '.' + new URL(service).host
-
-          if (handle.endsWith(host)) {
-            handle = handle.slice(0, -host.length)
-          }
-
           onSuccess({ uri, handle, profile: value })
           return { uri, value }
         } else {
