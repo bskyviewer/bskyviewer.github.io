@@ -16,6 +16,7 @@ function User({
   verb?: string
   verbedAt?: string
 }) {
+  const fullHandle = (handle?.includes('.') || handle?.includes(':')) ? handle :`${handle}.${service.replace(/^https?:\/\//, '')}`;
   const atUri = useMemo(() => new AtUri(uri), [uri])
 
   const profileImage = useMemo(() => {
@@ -64,12 +65,12 @@ function User({
       <div className="User__content">
         <a
           className="User__name"
-          href={`${WEB_APP}/profile/${handle ?? atUri.hostname}`}
+          href={`${WEB_APP}/profile/${fullHandle ?? atUri.hostname}`}
         >
-          {profile.displayName ?? handle ?? atUri.hostname}
+          {profile.displayName ?? fullHandle ?? atUri.hostname}
         </a>
         <br />
-        {handle ? <span className="User__handle">@{handle}</span> : null}
+        {handle ? <span className="User__handle">@{fullHandle}</span> : null}
         <br />
         {profile.description ? (
           <div className="User__bio">{profile.description}</div>
