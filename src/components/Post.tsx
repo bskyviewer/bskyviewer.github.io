@@ -125,6 +125,7 @@ function Post({
   const [parentPostError, setParentPostError] = useState<string>()
   const [hideReplies, setHideReplies] = useContext(ReplyContext);
   const [filter, setFilter] = useContext(Filter);
+  const fullHandle = profile?.handle?.match(/[\.:]/) ? profile?.handle :`${profile?.handle}.${service.replace(/^https?:\/\//, '')}`;
 
   const profileImage = useMemo(() => {
     if (!profile) {
@@ -221,7 +222,7 @@ function Post({
         )}
         <a
           className="Post__author-name"
-          href={`${WEB_APP}/profile/${profile ? profile.handle : atUri.hostname
+          href={`${WEB_APP}/profile/${profile ? fullHandle : atUri.hostname
             }`}
           data-tooltip-id="profile"
           data-tooltip-html={profileHtml}
