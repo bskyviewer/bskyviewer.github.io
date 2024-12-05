@@ -219,7 +219,7 @@ function App() {
         >
           <div className="App__loading-card__inner">
             <Spinner />
-            Loading your {collection.name}…
+            Loading {collection.name}…
           </div>
         </div>
 
